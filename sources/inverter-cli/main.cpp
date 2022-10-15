@@ -242,7 +242,7 @@ int main(int argc, char* argv[]) {
 
                 // Parse and display values
                 sscanf(reply1->c_str(), "%f %f %f %f %d %d %d %d %f %d %d %d %f %f %f %d %s %d %d %d %s", &voltage_grid, &freq_grid, &voltage_out, &freq_out, &load_va, &load_watt, &load_percent, &voltage_bus, &voltage_batt, &batt_charge_current, &batt_capacity, &temp_heatsink, &pv1_input_current, &pv1_input_voltage, &scc1_voltage, &batt_discharge_current, &device_status, &batt_voltage_offset, &eeprom_version, &pv1_input_watts, &float_charge_status);
-                sscanf(reply2->c_str(), "%f %f %f %f %f %d %d %f %f %f %f %f %d %d %d %d %d %d %d %d %d %d %f", &grid_voltage_rating, &grid_current_rating, &out_voltage_rating, &out_freq_rating, &out_current_rating, &out_va_rating, &out_watt_rating, &batt_rating, &batt_recharge_voltage, &batt_under_voltage, &batt_bulk_voltage, &batt_float_voltage, &batt_type, &max_grid_charge_current, &max_charge_current, &in_voltage_range, &out_source_priority, &charger_source_priority,&parralel_max, &machine_type, &topology, &out_mode, &batt_redischarge_voltage);
+                sscanf(reply2->c_str(), "%f %f %f %f %f %d %d %f %f %f %f %f %d %d %d %d %d %d %d %d %d %d %f", &grid_voltage_rating, &grid_current_rating, &out_voltage_rating, &out_freq_rating, &out_current_rating, &out_va_rating, &out_watt_rating, &batt_rating, &batt_recharge_voltage, &batt_under_voltage, &batt_bulk_voltage, &batt_float_voltage, &batt_type, &max_grid_charge_current, &max_charge_current, &in_voltage_range, &out_source_priority, &charger_source_priority,&parralel_max, &machine_type, &topology, &out_mode, &batt_re_discharge_voltage);
                 sscanf(reply3->c_str(), "%f %f %f %d %s %d %d %f %f %f %d %d", &pv2_input_current, &pv2_input_voltage, &scc2_voltage, &pv2_input_watts, &device_status, &ac_charging_current, &ac_charging_pwr, &pv3A, &pv3V, &scc3,&pv3_chg_pwr, &pv_total_input_watts);
 
                 // There appears to be a discrepancy in actual DMM measured current vs what the meter is
@@ -308,7 +308,7 @@ int main(int argc, char* argv[]) {
                 printf("  \"Max_charge_current\":%d,\n", max_charge_current);
                 printf("  \"Out_source_priority\":%d,\n", out_source_priority);
                 printf("  \"Charger_source_priority\":%d,\n", charger_source_priority);
-                printf("  \"Battery_redischarge_voltage\":%.1f,\n", batt_redischarge_voltage);
+                printf("  \"Battery_redischarge_voltage\":%.1f,\n", batt_re_discharge_voltage);
                 printf("  \"Warnings\":\"%s\"\n", warnings->c_str());
                 printf("}\n");
 

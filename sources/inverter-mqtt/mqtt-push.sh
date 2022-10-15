@@ -154,8 +154,8 @@ Out_source_priority=`echo $INVERTER_DATA | jq '.Out_source_priority' -r`
 Charger_source_priority=`echo $INVERTER_DATA | jq '.Charger_source_priority' -r`
 [ ! -z "$Charger_source_priority" ] && pushMQTTData "Charger_source_priority" "$Charger_source_priority"
 
-Battery_redischarge_voltage=`echo $INVERTER_DATA | jq '.Battery_redischarge_voltage' -r`
-[ ! -z "$Battery_redischarge_voltage" ] && pushMQTTData "Battery_redischarge_voltage" "$Battery_redischarge_voltage"
+Battery_re_discharge_voltage=`echo $INVERTER_DATA | jq '.Battery_re_discharge_voltage' -r`
+[ ! -z "$Battery_re_discharge_voltage" ] && pushMQTTData "Battery_re_discharge_voltage" "$Battery_re_discharge_voltage"
 
 Warnings=`echo $INVERTER_DATA | jq '.Warnings' -r`
 [ ! -z "$Warnings" ] && pushMQTTData "Warnings" "$Warnings"
