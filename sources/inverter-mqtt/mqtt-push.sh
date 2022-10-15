@@ -58,20 +58,38 @@ AC_out_voltage=`echo $INVERTER_DATA | jq '.AC_out_voltage' -r`
 AC_out_frequency=`echo $INVERTER_DATA | jq '.AC_out_frequency' -r`
 [ ! -z "$AC_out_frequency" ] && pushMQTTData "AC_out_frequency" "$AC_out_frequency"
 
-PV_in_voltage=`echo $INVERTER_DATA | jq '.PV_in_voltage' -r`
-[ ! -z "$PV_in_voltage" ] && pushMQTTData "PV_in_voltage" "$PV_in_voltage"
+PV1_in_voltage=`echo $INVERTER_DATA | jq '.PV1_in_voltage' -r`
+[ ! -z "$PV1_in_voltage" ] && pushMQTTData "PV1_in_voltage" "$PV1_in_voltage"
 
-PV_in_current=`echo $INVERTER_DATA | jq '.PV_in_current' -r`
-[ ! -z "$PV_in_current" ] && pushMQTTData "PV_in_current" "$PV_in_current"
+PV1_in_current=`echo $INVERTER_DATA | jq '.PV1_in_current' -r`
+[ ! -z "$PV1_in_current" ] && pushMQTTData "PV1_in_current" "$PV1_in_current"
 
-PV_in_watts=`echo $INVERTER_DATA | jq '.PV_in_watts' -r`
-[ ! -z "$PV_in_watts" ] && pushMQTTData "PV_in_watts" "$PV_in_watts"
+PV1_in_watts=`echo $INVERTER_DATA | jq '.PV1_in_watts' -r`
+[ ! -z "$PV1_in_watts" ] && pushMQTTData "PV1_in_watts" "$PV1_in_watts"
 
-PV_in_watthour=`echo $INVERTER_DATA | jq '.PV_in_watthour' -r`
-[ ! -z "$PV_in_watthour" ] && pushMQTTData "PV_in_watthour" "$PV_in_watthour"
+PV1_in_watthour=`echo $INVERTER_DATA | jq '.PV1_in_watthour' -r`
+[ ! -z "$PV1_in_watthour" ] && pushMQTTData "PV1_in_watthour" "$PV1_in_watthour"
 
-SCC_voltage=`echo $INVERTER_DATA | jq '.SCC_voltage' -r`
-[ ! -z "$SCC_voltage" ] && pushMQTTData "SCC_voltage" "$SCC_voltage"
+SCC1_voltage=`echo $INVERTER_DATA | jq '.SCC1_voltage' -r`
+[ ! -z "$SCC1_voltage" ] && pushMQTTData "SCC1_voltage" "$SCC1_voltage"
+
+PV2_in_voltage=`echo $INVERTER_DATA | jq '.PV2_in_voltage' -r`
+[ ! -z "$PV2_in_voltage" ] && pushMQTTData "PV2_in_voltage" "$PV2_in_voltage"
+
+PV2_in_current=`echo $INVERTER_DATA | jq '.PV2_in_current' -r`
+[ ! -z "$PV2_in_current" ] && pushMQTTData "PV2_in_current" "$PV2_in_current"
+
+PV2_in_watts=`echo $INVERTER_DATA | jq '.PV2_in_watts' -r`
+[ ! -z "$PV2_in_watts" ] && pushMQTTData "PV2_in_watts" "$PV2_in_watts"
+
+PV2_in_watthour=`echo $INVERTER_DATA | jq '.PV2_in_watthour' -r`
+[ ! -z "$PV2_in_watthour" ] && pushMQTTData "PV2_in_watthour" "$PV2_in_watthour"
+
+SCC2_voltage=`echo $INVERTER_DATA | jq '.SCC2_voltage' -r`
+[ ! -z "$SCC2_voltage" ] && pushMQTTData "SCC2_voltage" "$SCC2_voltage"
+
+PV_total_in_watts=`echo $INVERTER_DATA | jq '.PV_total_in_watts' -r`
+[ ! -z "$PV_total_in_watts" ] && pushMQTTData "PV_total_in_watts" "$PV_total_in_watts"
 
 Load_pct=`echo $INVERTER_DATA | jq '.Load_pct' -r`
 [ ! -z "$Load_pct" ] && pushMQTTData "Load_pct" "$Load_pct"
