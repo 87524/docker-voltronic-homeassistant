@@ -130,9 +130,12 @@ int main(int argc, char* argv[]) {
     float pv1_input_watts;
     float pv1_input_watthour;
     float load_watthour = 0;
-    float scc_voltage;
+    float scc1_voltage;
     int batt_discharge_current;
     char device_status[9];
+    int batt_voltage_offset;
+    int eeprom_version;
+    char float_charge_status[3];
 
     // Reply2
     float grid_voltage_rating;
@@ -156,28 +159,26 @@ int main(int argc, char* argv[]) {
     int machine_type;
     int topology;
     int out_mode;
-    float batt_redischarge_voltage;
+    float batt_re_discharge_voltage;
+    int parralel_max;
+
+
 
      // Reply3
-    float voltage_grid;
-    float freq_grid;
-    float voltage_out;
-    float freq_out;
-    int load_va;
-    int load_watt;
-    int load_percent;
-    int voltage_bus;
-    float voltage_batt;
-    int batt_charge_current;
-    int batt_capacity;
-    int temp_heatsink;
+    
     float pv2_input_current;
     float pv2_input_voltage;
     float pv2_input_watts;
     float pv2_input_watthour;
-    float load_watthour = 0;
-    float scc_voltage;
+    float scc2_voltage;
     int batt_discharge_current;
+    int ac_charging_current;
+    int ac_charging_pwr;
+    int pv3A;
+    float pv3V;
+    float scc3;
+    int pv3_chg_pwr;
+    int pv_total_input_watts;
     char device_status[9];
 
     // Get command flag settings from the arguments (if any)
