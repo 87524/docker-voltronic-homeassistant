@@ -33,7 +33,7 @@ class cInverter {
 
         string *GetQpiriStatus();
         string *GetQpigsStatus();
-        string *GetQpigs2Status();
+        string *GetQpgs0Status();
         string *GetWarnings();
 
         int GetMode();

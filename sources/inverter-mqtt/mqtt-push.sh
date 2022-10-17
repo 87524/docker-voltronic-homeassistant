@@ -70,8 +70,8 @@ PV1_in_watts=`echo $INVERTER_DATA | jq '.PV1_in_watts' -r`
 PV1_in_watthour=`echo $INVERTER_DATA | jq '.PV1_in_watthour' -r`
 [ ! -z "$PV1_in_watthour" ] && pushMQTTData "PV1_in_watthour" "$PV1_in_watthour"
 
-SCC1_voltage=`echo $INVERTER_DATA | jq '.SCC1_voltage' -r`
-[ ! -z "$SCC1_voltage" ] && pushMQTTData "SCC1_voltage" "$SCC1_voltage"
+SCC1_voltage=`echo $INVERTER_DATA | jq '.SCC_voltage' -r`
+[ ! -z "$SCC1_voltage" ] && pushMQTTData "SCC_voltage" "$SCC_voltage"
 
 PV2_in_voltage=`echo $INVERTER_DATA | jq '.PV2_in_voltage' -r`
 [ ! -z "$PV2_in_voltage" ] && pushMQTTData "PV2_in_voltage" "$PV2_in_voltage"
@@ -84,9 +84,6 @@ PV2_in_watts=`echo $INVERTER_DATA | jq '.PV2_in_watts' -r`
 
 PV2_in_watthour=`echo $INVERTER_DATA | jq '.PV2_in_watthour' -r`
 [ ! -z "$PV2_in_watthour" ] && pushMQTTData "PV2_in_watthour" "$PV2_in_watthour"
-
-SCC2_voltage=`echo $INVERTER_DATA | jq '.SCC2_voltage' -r`
-[ ! -z "$SCC2_voltage" ] && pushMQTTData "SCC2_voltage" "$SCC2_voltage"
 
 PV_total_in_watts=`echo $INVERTER_DATA | jq '.PV_total_in_watts' -r`
 [ ! -z "$PV_total_in_watts" ] && pushMQTTData "PV_total_in_watts" "$PV_total_in_watts"
@@ -154,8 +151,8 @@ Out_source_priority=`echo $INVERTER_DATA | jq '.Out_source_priority' -r`
 Charger_source_priority=`echo $INVERTER_DATA | jq '.Charger_source_priority' -r`
 [ ! -z "$Charger_source_priority" ] && pushMQTTData "Charger_source_priority" "$Charger_source_priority"
 
-Battery_re_discharge_voltage=`echo $INVERTER_DATA | jq '.Battery_re_discharge_voltage' -r`
-[ ! -z "$Battery_re_discharge_voltage" ] && pushMQTTData "Battery_re_discharge_voltage" "$Battery_re_discharge_voltage"
+Battery_redischarge_voltage=`echo $INVERTER_DATA | jq '.Battery_redischarge_voltage' -r`
+[ ! -z "$Battery_redischarge_voltage" ] && pushMQTTData "Battery_redischarge_voltage" "$Battery_redischarge_voltage"
 
 Warnings=`echo $INVERTER_DATA | jq '.Warnings' -r`
 [ ! -z "$Warnings" ] && pushMQTTData "Warnings" "$Warnings"

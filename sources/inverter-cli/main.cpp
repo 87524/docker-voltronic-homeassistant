@@ -32,7 +32,7 @@ atomic_bool ups_status_changed(false);
 atomic_bool ups_qmod_changed(false);
 atomic_bool ups_qpiri_changed(false);
 atomic_bool ups_qpigs_changed(false);
-atomic_bool ups_qpigs2_changed(false);
+atomic_bool ups_qpgs0_changed(false);
 atomic_bool ups_qpiws_changed(false);
 atomic_bool ups_cmd_executed(false);
 
@@ -44,7 +44,7 @@ string devicename;
 int runinterval;
 float ampfactor;
 float wattfactor;
-int qpiri, qpiws, qmod, qpigs, qpigs2;
+int qpiri, qpiws, qmod, qpigs, qpgs0;
 
 // ---------------------------------------
 
@@ -98,8 +98,8 @@ void getSettingsFile(string filename) {
                     attemptAddSetting(&qmod, linepart2);
                 else if(linepart1 == "qpigs")
                     attemptAddSetting(&qpigs, linepart2);
-                else if(linepart1 == "qpigs2")
-                    attemptAddSetting(&qpigs2, linepart2);
+                else if(linepart1 == "qpgs0")
+                    attemptAddSetting(&qpgs0, linepart2);
                 else
                     continue;
             }
@@ -112,7 +112,7 @@ void getSettingsFile(string filename) {
 
 int main(int argc, char* argv[]) {
 
-    // Reply1
+    // Reply1 QPIGS
     float voltage_grid;
     float freq_grid;
     float voltage_out;
@@ -127,17 +127,23 @@ int main(int argc, char* argv[]) {
     int temp_heatsink;
     float pv1_input_current;
     float pv1_input_voltage;
-    float pv1_input_watts;
-    float pv1_input_watthour;
-    float load_watthour = 0;
-    float scc1_voltage;
+    float scc_voltage;
     int batt_discharge_current;
-    char device_status[9];
+    char device_status[8];
     int batt_voltage_offset;
     int eeprom_version;
+    float pv1_input_watts;
     char float_charge_status[3];
+    float pv1_input_watthour;
+    float load_watthour = 0;
 
-    // Reply2
+
+
+
+
+ 
+
+    // Reply2 QPIRI
     float grid_voltage_rating;
     float grid_current_rating;
     float out_voltage_rating;
@@ -156,30 +162,52 @@ int main(int argc, char* argv[]) {
     int in_voltage_range;
     int out_source_priority;
     int charger_source_priority;
+    int parralel_max;
     int machine_type;
     int topology;
     int out_mode;
     float batt_re_discharge_voltage;
-    int parralel_max;
+    int pv_ok;
+    int pv_power_pallance;
+    int max_charging_time_CV;
+    int operation_logic;
+    int batt_max_discharging_current;
 
 
 
-     // Reply3
-    
-    float pv2_input_current;
+
+     // Reply3 QPGS0
+    int parallel_N;
+    int SN;
+    int mode;
+    int fault;
+    //float voltage_grid;
+    //float freq_grid;
+    //float voltage_out;
+    //float freq_out;
+    //int load_va;
+    //int load_watt;
+    //int load_percent;
+    //float voltage_batt;
+    //int batt_charge_current;
+    //int batt_capacity;
+    //float pv1_input_voltage;
+    int total_charging_current;
+    int total_va;
+    int total_%;
+    char device2_status[8]; 
+    // int out_mode;
+    //int charger_source_priority;
+    //int max_charge_current;
+    int max_charge_range;
+    //int max_grid_charge_current;
+    //int pv1_input_current;
+    //int batt_discharge_current;
     float pv2_input_voltage;
+    float pv2_input_current;
     float pv2_input_watts;
     float pv2_input_watthour;
-    float scc2_voltage;
-    char device2_status[9];
-    int ac_charging_current;
-    int ac_charging_pwr;
-    int pv3A;
-    float pv3V;
-    float scc3;
-    int pv3_chg_pwr;
-    int pv_total_input_watts;
-
+    float pv_total_input_watts;
 
     // Get command flag settings from the arguments (if any)
     InputParser cmdArgs(argc, argv);
@@ -226,25 +254,25 @@ int main(int argc, char* argv[]) {
             ups_status_changed = false;
         }
 
-        if (ups_qmod_changed && ups_qpiri_changed && ups_qpigs_changed && ups_qpigs2_changed) {
+        if (ups_qmod_changed && ups_qpiri_changed && ups_qpigs_changed && ups_qpgs0_changed) {
 
             ups_qmod_changed = false;
             ups_qpiri_changed = false;
             ups_qpigs_changed = false;
-            ups_qpigs2_changed = false;
+            ups_qpgs0_changed = false;
 
             int mode = ups->GetMode();
             string *reply1   = ups->GetQpigsStatus();
             string *reply2   = ups->GetQpiriStatus();
-            string *reply3   = ups->GetQpigs2Status();
+            string *reply3   = ups->GetQpgs0Status();
             string *warnings = ups->GetWarnings();
 
             if (reply1 && reply2  && reply3 && warnings) {
 
                 // Parse and display values
-                sscanf(reply1->c_str(), "%f %f %f %f %d %d %d %d %f %d %d %d %f %f %f %d %s %d %d %d %s", &voltage_grid, &freq_grid, &voltage_out, &freq_out, &load_va, &load_watt, &load_percent, &voltage_bus, &voltage_batt, &batt_charge_current, &batt_capacity, &temp_heatsink, &pv1_input_current, &pv1_input_voltage, &scc1_voltage, &batt_discharge_current, &device_status, &batt_voltage_offset, &eeprom_version, &pv1_input_watts, &float_charge_status);
-                sscanf(reply2->c_str(), "%f %f %f %f %f %d %d %f %f %f %f %f %d %d %d %d %d %d %d %d %d %d %f", &grid_voltage_rating, &grid_current_rating, &out_voltage_rating, &out_freq_rating, &out_current_rating, &out_va_rating, &out_watt_rating, &batt_rating, &batt_recharge_voltage, &batt_under_voltage, &batt_bulk_voltage, &batt_float_voltage, &batt_type, &max_grid_charge_current, &max_charge_current, &in_voltage_range, &out_source_priority, &charger_source_priority,&parralel_max, &machine_type, &topology, &out_mode, &batt_re_discharge_voltage);
-                sscanf(reply3->c_str(), "%f %f %f %d %s %d %d %f %f %f %d %d", &pv2_input_current, &pv2_input_voltage, &scc2_voltage, &pv2_input_watts, &device2_status, &ac_charging_current, &ac_charging_pwr, &pv3A, &pv3V, &scc3,&pv3_chg_pwr, &pv_total_input_watts);
+                sscanf(reply1->c_str(), "%f %f %f %f %d %d %d %d %f %d %d %d %f %f %f %d %s %d %d %d %s %f %f", &voltage_grid, &freq_grid, &voltage_out, &freq_out, &load_va, &load_watt, &load_percent, &voltage_bus, &voltage_batt, &batt_charge_current, &batt_capacity, &temp_heatsink, &pv1_input_current, &pv1_input_voltage, &scc_voltage, &batt_discharge_current, &device_status, &batt_voltage_offset, &eeprom_version, &pv1_input_watts, &float_charge_status);
+                sscanf(reply2->c_str(), "%f %f %f %f %f %d %d %f %f %f %f %f %d %d %d %d %d %d %d %d %d %d %f %d %d %d %d %d", &grid_voltage_rating, &grid_current_rating, &out_voltage_rating, &out_freq_rating, &out_current_rating, &out_va_rating, &out_watt_rating, &batt_rating, &batt_recharge_voltage, &batt_under_voltage, &batt_bulk_voltage, &batt_float_voltage, &batt_type, &max_grid_charge_current, &max_charge_current, &in_voltage_range, &out_source_priority, &charger_source_priority, &parralel_max, &machine_type, &topology, &out_mode, &batt_re_discharge_voltage, &pv_ok, &pv_power_pallance, &max_charging_time_CV, &operation_logic, &batt_max_discharging_current);
+                sscanf(reply3->c_str(), "%d %d %d %d %f %f %f %f %d %d %d %f %d %d %f %d %d %d %s %d %d %d %d %d %d %d %f %f", &parallel_N, &SN, &mode,&fault,&voltage_grid, &freq_grid, &voltage_out, &freq_out, &load_va, &load_watt, &load_percent, &voltage_batt, &batt_charge_current, &batt_capacity, &pv1_input_voltage, &total_charging_current, &total_va, &total_%, &device2_status, &out_mode, &max_charge_current, &max_charge_range, &max_grid_charge_current, &pv1_input_current, &batt_discharge_current, &pv2_input_voltage, &pv2_input_current );
 
                 // There appears to be a discrepancy in actual DMM measured current vs what the meter is
                 // telling me it's getting, so lets add a variable we can multiply/divide by to adjust if
@@ -261,8 +289,9 @@ int main(int argc, char* argv[]) {
                 // current that is going out to the battery at battery voltage (NOT at PV voltage).  This
                 // would explain the larger discrepancy we saw before.
 
-                pv1_input_watts = (scc1_voltage * pv1_input_current) * wattfactor;
-                pv2_input_watts = (scc2_voltage * pv2_input_current) * wattfactor;
+                pv1_input_watts = (scc_voltage * pv1_input_current) * wattfactor;
+                pv2_input_watts = (scc_voltage * pv2_input_current) * wattfactor;
+                pv_total_input_watts = pv1_input_watts+pv2_input_watts
 
                 // Calculate watt-hours generated per run interval period (given as program argument)
                 pv1_input_watthour = pv1_input_watts / (3600 / runinterval);
@@ -281,12 +310,11 @@ int main(int argc, char* argv[]) {
                 printf("  \"PV1_in_current\":%.1f,\n", pv1_input_current);
                 printf("  \"PV1_in_watts\":%.1f,\n", pv1_input_watts);
                 printf("  \"PV1_in_watthour\":%.4f,\n", pv1_input_watthour);
-                printf("  \"SCC1_voltage\":%.4f,\n", scc1_voltage);
+                printf("  \"SCC_voltage\":%.4f,\n", scc_voltage);
                 printf("  \"PV2_in_voltage\":%.1f,\n", pv2_input_voltage);
                 printf("  \"PV2_in_current\":%.1f,\n", pv2_input_current);
                 printf("  \"PV2_in_watts\":%.1f,\n", pv2_input_watts);
                 printf("  \"PV2_in_watthour\":%.4f,\n", pv2_input_watthour);
-                printf("  \"SCC2_voltage\":%.4f,\n", scc2_voltage);
                 printf("  \"PV_total_in_watts\":%.1f,\n", pv_total_input_watts);
                 printf("  \"Load_pct\":%d,\n", load_percent);
                 printf("  \"Load_watt\":%d,\n", load_watt);

@@ -1,0 +1,108 @@
+Command: QPIRI - Current Settings inquiry
+------------------------------------------------------------
+Parameter                     	Value           Unit
+ac_input_voltage              	230.0          	V   
+ac_input_current              	34.7           	A   
+ac_output_voltage             	230.0          	V   
+ac_output_frequency           	50.0           	Hz  
+ac_output_current             	34.7           	A   
+ac_output_apparent_power      	8000           	VA  
+ac_output_active_power        	8000           	W   
+battery_voltage               	48.0           	V   
+battery_recharge_voltage      	51.0           	V   
+battery_under_voltage         	48.0           	V   
+battery_bulk_charge_voltage   	54.0           	V   
+battery_float_charge_voltage  	54.0           	V   
+battery_type                  	User           	    
+max_ac_charging_current       	2              	A   
+max_charging_current          	30             	A   
+input_voltage_range           	UPS            	    
+output_source_priority        	Solar Battery Utility	    
+charger_source_priority       	Solar first    	    
+max_parallel_units            	9              	units
+machine_type                  	Off Grid       	    
+topology                      	transformerless	    
+output_mode                   	single machine output	    
+battery_redischarge_voltage   	52.0           	V   
+pv_ok_condition               	As long as one unit of inverters has connect PV, parallel system will consider PV OK	    
+pv_power_balance              	PV input max power will be the sum of the max charged power and loads power	    
+max_charging_time_for_cv_stage	480            	min 
+operation_logic               	Automatic mode 	    
+max_discharging_current       	40             	A   
+2022-10-17 20:29:53,282:DEBUG:__init__:main@438: Not daemon, so not looping
+
+
+Command: QPIGS - General Status Parameters inquiry
+------------------------------------------------------------
+Parameter                     	Value           Unit
+ac_input_voltage              	234.2          	V   
+ac_input_frequency            	49.9           	Hz  
+ac_output_voltage             	229.8          	V   
+ac_output_frequency           	50.0           	Hz  
+ac_output_apparent_power      	344            	VA  
+ac_output_active_power        	167            	W   
+ac_output_load                	4              	%   
+bus_voltage                   	386            	V   
+battery_voltage               	52.8           	V   
+battery_charging_current      	0              	A   
+battery_capacity              	46             	%   
+inverter_heat_sink_temperature	41             	°C  
+pv1_input_current             	0.0            	A   
+pv1_input_voltage             	0.0            	V   
+battery_voltage_from_scc      	0.0            	V   
+battery_discharge_current     	4              	A   
+is_sbu_priority_version_added 	0              	bool
+is_configuration_changed      	0              	bool
+is_scc_firmware_updated       	0              	bool
+is_load_on                    	1              	bool
+is_battery_voltage_to_steady_while_charging	0              	bool
+is_charging_on                	0              	bool
+is_scc_charging_on            	0              	bool
+is_ac_charging_on             	0              	bool
+battery_voltage_offset_for_fans_on	0              	10mV
+eeprom_version                	0              	    
+pv1_charging_power            	0              	W   
+is_charging_to_float          	0              	bool
+is_switched_on                	1              	bool
+is_dustproof_installed        	0              	bool
+
+
+Command: QPGS0 - Parallel Information inquiry
+------------------------------------------------------------
+Parameter                     	Value           Unit
+parallel_instance_number      	Not valid      	    
+serial_number                 	92932203100842 	    
+work_mode                     	Battery Mode   	    
+fault_code                    	No fault       	    
+grid_voltage                  	234.9          	V   
+grid_frequency                	49.99          	Hz  
+ac_output_voltage             	229.9          	V   
+ac_output_frequency           	49.99          	Hz  
+ac_output_apparent_power      	321            	VA  
+ac_output_active_power        	123            	W   
+load_per centage               	4              	%   
+battery_voltage               	52.8           	V   
+battery_charging_current      	0              	A   
+battery_capacity              	46             	%   
+pv1_input_voltage             	0.0            	V   
+total_charging_current        	0              	A   
+total_ac_output_apparent_power	321            	VA  
+total_output_active_power     	123            	W   
+total_ac_output_percentage    	1              	%   
+is_scc_ok                     	0              	bool
+is_ac_charging                	0              	bool
+is_scc_charging               	0              	bool
+is_battery_over_voltage       	0              	bool
+is_battery_under_voltage      	0              	bool
+is_line_lost                  	0              	bool
+is_load_on                    	1              	bool
+is_configuration_changed      	0              	bool
+output_mode                   	single machine 	    
+charger_source_priority       	Utility first  	    
+max_charger_current           	30             	A   
+max_charger_range             	120            	A   
+max_ac_charger_current        	2              	A   
+pv1_input_current             	0              	A   
+battery_discharge_current     	4              	A   
+pv2_input_voltage             	0.0            	V   
+pv2_input_current             	0              	A   

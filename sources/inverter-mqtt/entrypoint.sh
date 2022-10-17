@@ -11,5 +11,5 @@ watch -n 300 /opt/inverter-mqtt/mqtt-init.sh > /dev/null 2>&1 &
 # Run the MQTT Subscriber process in the background (so that way we can change the configuration on the inverter from home assistant)
 /opt/inverter-mqtt/mqtt-subscriber.sh &
 
-# execute exactly every 10 seconds...
-watch -n 10 /opt/inverter-mqtt/mqtt-push.sh > /dev/null 2>&1
+# execute exactly every 20 seconds...
+watch -n 20 /opt/inverter-mqtt/mqtt-push.sh > /dev/null 2>&1
