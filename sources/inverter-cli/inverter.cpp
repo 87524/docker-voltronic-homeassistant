@@ -11,7 +11,7 @@
 
 // for MAX 8000 dual MPPT inverters we need to add QPIGS2 command to get the data for the second MPPT string
 
-cInverter::cInverter(std::string devicename, int qpiri, int qpiws, int qmod, int qpigs, int qpigs2) {
+cInverter::cInverter(std::string devicename, int qpiri, int qpiws, int qmod, int qpigs, int qpgs0) {
     device = devicename;
     status1[0] = 0;
     status2[0] = 0;

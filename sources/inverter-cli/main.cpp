@@ -194,7 +194,7 @@ int main(int argc, char* argv[]) {
     //float pv1_input_voltage;
     int total_charging_current;
     int total_va;
-    int total_%;
+    int total_pct;
     char device2_status[8]; 
     // int out_mode;
     //int charger_source_priority;
@@ -272,7 +272,7 @@ int main(int argc, char* argv[]) {
                 // Parse and display values
                 sscanf(reply1->c_str(), "%f %f %f %f %d %d %d %d %f %d %d %d %f %f %f %d %s %d %d %d %s %f %f", &voltage_grid, &freq_grid, &voltage_out, &freq_out, &load_va, &load_watt, &load_percent, &voltage_bus, &voltage_batt, &batt_charge_current, &batt_capacity, &temp_heatsink, &pv1_input_current, &pv1_input_voltage, &scc_voltage, &batt_discharge_current, &device_status, &batt_voltage_offset, &eeprom_version, &pv1_input_watts, &float_charge_status);
                 sscanf(reply2->c_str(), "%f %f %f %f %f %d %d %f %f %f %f %f %d %d %d %d %d %d %d %d %d %d %f %d %d %d %d %d", &grid_voltage_rating, &grid_current_rating, &out_voltage_rating, &out_freq_rating, &out_current_rating, &out_va_rating, &out_watt_rating, &batt_rating, &batt_recharge_voltage, &batt_under_voltage, &batt_bulk_voltage, &batt_float_voltage, &batt_type, &max_grid_charge_current, &max_charge_current, &in_voltage_range, &out_source_priority, &charger_source_priority, &parralel_max, &machine_type, &topology, &out_mode, &batt_re_discharge_voltage, &pv_ok, &pv_power_pallance, &max_charging_time_CV, &operation_logic, &batt_max_discharging_current);
-                sscanf(reply3->c_str(), "%d %d %d %d %f %f %f %f %d %d %d %f %d %d %f %d %d %d %s %d %d %d %d %d %d %d %f %f", &parallel_N, &SN, &mode,&fault,&voltage_grid, &freq_grid, &voltage_out, &freq_out, &load_va, &load_watt, &load_percent, &voltage_batt, &batt_charge_current, &batt_capacity, &pv1_input_voltage, &total_charging_current, &total_va, &total_%, &device2_status, &out_mode, &max_charge_current, &max_charge_range, &max_grid_charge_current, &pv1_input_current, &batt_discharge_current, &pv2_input_voltage, &pv2_input_current );
+                sscanf(reply3->c_str(), "%d %d %d %d %f %f %f %f %d %d %d %f %d %d %f %d %d %d %s %d %d %d %d %d %d %d %f %f", &parallel_N, &SN, &mode,&fault,&voltage_grid, &freq_grid, &voltage_out, &freq_out, &load_va, &load_watt, &load_percent, &voltage_batt, &batt_charge_current, &batt_capacity, &pv1_input_voltage, &total_charging_current, &total_va, &total_pct, &device2_status, &out_mode, &max_charge_current, &max_charge_range, &max_grid_charge_current, &pv1_input_current, &batt_discharge_current, &pv2_input_voltage, &pv2_input_current );
 
                 // There appears to be a discrepancy in actual DMM measured current vs what the meter is
                 // telling me it's getting, so lets add a variable we can multiply/divide by to adjust if
@@ -291,7 +291,7 @@ int main(int argc, char* argv[]) {
 
                 pv1_input_watts = (scc_voltage * pv1_input_current) * wattfactor;
                 pv2_input_watts = (scc_voltage * pv2_input_current) * wattfactor;
-                pv_total_input_watts = pv1_input_watts+pv2_input_watts
+                pv_total_input_watts = pv1_input_watts+pv2_input_watts;
 
                 // Calculate watt-hours generated per run interval period (given as program argument)
                 pv1_input_watthour = pv1_input_watts / (3600 / runinterval);
