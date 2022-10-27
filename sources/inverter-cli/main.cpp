@@ -232,7 +232,7 @@ int main(int argc, char* argv[]) {
     }
 
     bool ups_status_changed(false);
-    ups = new cInverter(devicename,qpiri,qpiws,qmod,qpigs,qpigs2);
+    ups = new cInverter(devicename,qpiri,qpiws,qmod,qpigs,qpgs0);
 
     // Logic to send 'raw commands' to the inverter..
     if (!rawcmd.empty()) {
