@@ -10,7 +10,7 @@
 #include <termios.h>
 
 // for MAX 8000 dual MPPT 
-cInverter::cInverter(std::string devicename, int qpiri, int qpiws, int qmod, int qpigs, int qpgs0) {
+cInverter::cInverter(std::string devicename, int qpiri, int qpiws, int qmod, int qpgs0) {
     device = devicename;
     status1[0] = 0;
     status2[0] = 0;
@@ -23,16 +23,18 @@ cInverter::cInverter(std::string devicename, int qpiri, int qpiws, int qmod, int
 }
 
 
-string *cInverter::GetQpgs0Status() {
+string *cInverter::GetQpiriStatus() {
     m.lock();
-    string *result = new string(status1);
+    string *result = new string(status2);
     m.unlock();
     return result;
 }
 
-string *cInverter::GetQpiriStatus() {
+// QPIGS status1 string added
+
+string *cInverter::GetQpgs0Status() {
     m.lock();
-    string *result = new string(status2);
+    string *result = new string(status1);
     m.unlock();
     return result;
 }
@@ -169,6 +171,16 @@ void cInverter::poll() {
                 SetMode(buf[1]);
                 ups_qmod_changed = true;
             }
+        }
+
+        // reading status (QPIGS)
+      //  if (!ups_qpigs_changed) {
+        //    if (query("QPIGS", qpigs)) {
+          //      m.lock();
+            //    strcpy(status1, (const char*)buf+1);
+              //  m.unlock();
+               // ups_qpigs_changed = true;
+            //}
         }
 
         // Reading QPIRI status

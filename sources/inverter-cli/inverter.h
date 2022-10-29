@@ -7,7 +7,7 @@
 using namespace std;
 
 class cInverter {
-    unsigned char buf[2028]; //internal work buffer
+    unsigned char buf[1024]; //internal work buffer
 
     char warnings[1024];
     char status1[1024];
@@ -23,7 +23,7 @@ class cInverter {
     uint16_t cal_crc_half(uint8_t *pin, uint8_t len);
 
     public:
-        cInverter(std::string devicename, int qpiri, int qpiws, int qmod, int qpigs);
+        cInverter(std::string devicename, int qpiri, int qpiws, int qmod, int qpgs0);
         void poll();
         void runMultiThread() {
             std::thread t1(&cInverter::poll, this);
