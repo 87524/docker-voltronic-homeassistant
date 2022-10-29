@@ -110,29 +110,29 @@ void getSettingsFile(string filename) {
 int main(int argc, char* argv[]) {
 
 // Reply1 QPIGS
-//    float voltage_grid;
-//   float freq_grid;
-//    float voltage_out;
-//    float freq_out;
-//    int load_va;
- //   int load_watt;
-//    int load_percent;
-//    int voltage_bus;
-//    float voltage_batt;
-//    int batt_charge_current;
-//    int batt_capacity;
-//    int temp_heatsink;
-//    float pv1_input_current;
-//    float pv1_input_voltage;
-//    float scc_voltage;
-//    int batt_discharge_current;
-//    char device_status[8];
-//    int batt_voltage_offset;
-//    int eeprom_version;
-//    float pv1_input_watts;
-//    char float_charge_status[3];
-//    float pv1_input_watthour;
-//    float load_watthour = 0;
+    float voltage_grid;
+    float freq_grid;
+    float voltage_out;
+    float freq_out;
+    int load_va;
+    int load_watt;
+    int load_percent;
+    int voltage_bus;
+    float voltage_batt;
+    int batt_charge_current;
+    int batt_capacity;
+    int temp_heatsink;
+    float pv1_input_current;
+    float pv1_input_voltage;
+    float scc_voltage;
+    int batt_discharge_current;
+    char device_status[8];
+    int batt_voltage_offset;
+    int eeprom_version;
+    float pv1_input_watts;
+    char float_charge_status[3];
+    float pv1_input_watthour;
+    float load_watthour = 0;
 
 
 
@@ -173,7 +173,7 @@ int main(int argc, char* argv[]) {
 
 
 
-     // Reply3 QPGS0
+     // Reply1 QPGS0
     int parallel_N;
     int SN;
     int mode;
@@ -193,11 +193,11 @@ int main(int argc, char* argv[]) {
     int total_va;
     int total_pct;
     char device2_status[8]; 
-    int out_mode;
-    int charger_source_priority;
-    int max_charge_current;
+    //int out_mode;
+    //int charger_source_priority;
+    //int max_charge_current;
     int max_charge_range;
-    int max_grid_charge_current;
+    //int max_grid_charge_current;
     int pv1_input_current;
     int batt_discharge_current;
     float pv2_input_voltage;
@@ -340,8 +340,7 @@ int main(int argc, char* argv[]) {
                 // Delete reply string so we can update with new data when polled again...
                 delete reply1;
                 delete reply2;
-                delete reply3;
-
+              
                 if(runOnce) {
                     // Do once and exit instead of loop endlessly
                     lprintf("INVERTER: All queries complete, exiting loop.");
