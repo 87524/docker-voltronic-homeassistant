@@ -215,7 +215,7 @@ void cInverter::poll() {
 
         sleep(5);
     }
-}
+
 
 void cInverter::ExecuteCmd(const string cmd) {
     // Sending any command raw
