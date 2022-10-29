@@ -257,14 +257,14 @@ int main(int argc, char* argv[]) {
                 // current that is going out to the battery at battery voltage (NOT at PV voltage).  This
                 // would explain the larger discrepancy we saw before.
 
-                pv1_input_watts = (scc_voltage * pv1_input_current) * wattfactor;
-                pv2_input_watts = (scc_voltage * pv2_input_current) * wattfactor;
-                pv_total_input_watts = pv1_input_watts+pv2_input_watts;
+                //pv1_input_watts = (scc_voltage * pv1_input_current) * wattfactor;
+                //pv2_input_watts = (scc_voltage * pv2_input_current) * wattfactor;
+                //pv_total_input_watts = pv1_input_watts+pv2_input_watts;
 
                 // Calculate watt-hours generated per run interval period (given as program argument)
-                pv1_input_watthour = pv1_input_watts / (3600 / runinterval);
-                pv2_input_watthour = pv2_input_watts / (3600 / runinterval);
-                load_watthour = (float)load_watt / (3600 / runinterval);
+                //pv1_input_watthour = pv1_input_watts / (3600 / runinterval);
+                //pv2_input_watthour = pv2_input_watts / (3600 / runinterval);
+                //load_watthour = (float)load_watt / (3600 / runinterval);
 
                 // Print as JSON (output is expected to be parsed by another tool...)
                 printf("{\n");
@@ -288,13 +288,13 @@ int main(int argc, char* argv[]) {
                 printf("  \"Load_watt\":%d,\n", load_watt);
                 printf("  \"Load_watthour\":%.4f,\n", load_watthour);
                 printf("  \"Load_va\":%d,\n", load_va);
-                printf("  \"Bus_voltage\":%d,\n", voltage_bus);
-                printf("  \"Heatsink_temperature\":%d,\n", temp_heatsink);
+               // printf("  \"Bus_voltage\":%d,\n", voltage_bus);
+              //  printf("  \"Heatsink_temperature\":%d,\n", temp_heatsink);
                 printf("  \"Battery_capacity\":%d,\n", batt_capacity);
                 printf("  \"Battery_voltage\":%.2f,\n", voltage_batt);
                 printf("  \"Battery_charge_current\":%d,\n", batt_charge_current);
                 printf("  \"Battery_discharge_current\":%d,\n", batt_discharge_current);
-                printf("  \"Load_status_on\":%c,\n", device_status[3]);
+                //printf("  \"Load_status_on\":%c,\n", device_status[3]);
                 printf("  \"SCC_charge_on\":%c,\n", device_status[6]);
                 printf("  \"AC_charge_on\":%c,\n", device_status[7]);
                 printf("  \"Battery_recharge_voltage\":%.1f,\n", batt_recharge_voltage);
