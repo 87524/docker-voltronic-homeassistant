@@ -110,27 +110,27 @@ void getSettingsFile(string filename) {
 int main(int argc, char* argv[]) {
 
 // Reply1 QPIGS
-    float voltage_grid;
-    float freq_grid;
-    float voltage_out;
-    float freq_out;
-    int load_va;
-    int load_watt;
-    int load_percent;
-    int voltage_bus;
-    float voltage_batt;
-    int batt_charge_current;
-    int batt_capacity;
-    int temp_heatsink;
+ //   float voltage_grid;
+ //   float freq_grid;
+ //   float voltage_out;
+ //   float freq_out;
+ //   int load_va;
+ //   int load_watt;
+ //   int load_percent;
+ //   int voltage_bus;
+ //   float voltage_batt;
+ //   int batt_charge_current;
+ //   int batt_capacity;
+ //   int temp_heatsink;
     float pv1_input_current;
     float pv1_input_voltage;
-    float scc_voltage;
-    int batt_discharge_current;
-    char device_status[8];
-    int batt_voltage_offset;
-    int eeprom_version;
-    float pv1_input_watts;
-    char float_charge_status[3];
+ //   float scc_voltage;
+ //   int batt_discharge_current;
+ //   char device_status[8];
+ //   int batt_voltage_offset;
+ //   int eeprom_version;
+ //   float pv1_input_watts;
+ //   char float_charge_status[3];
     float pv1_input_watthour;
     float load_watthour = 0;
 
