@@ -193,11 +193,11 @@ int main(int argc, char* argv[]) {
     int total_va;
     int total_pct;
     char device2_status[8]; 
-    //int out_mode;
-    //int charger_source_priority;
-    //int max_charge_current;
+    // int out_mode;
+    // int charger_source_priority;
+    // int max_charge_current;
     int max_charge_range;
-    //int max_grid_charge_current;
+    // int max_grid_charge_current;
     int pv1_input_current;
     int batt_discharge_current;
     float pv2_input_voltage;
