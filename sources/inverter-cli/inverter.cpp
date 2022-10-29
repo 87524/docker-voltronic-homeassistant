@@ -9,23 +9,21 @@
 #include <fcntl.h>
 #include <termios.h>
 
-// for MAX 8000 dual MPPT inverters we need to add QPIGS2 command to get the data for the second MPPT string
-
+// for MAX 8000 dual MPPT 
 cInverter::cInverter(std::string devicename, int qpiri, int qpiws, int qmod, int qpigs, int qpgs0) {
     device = devicename;
     status1[0] = 0;
     status2[0] = 0;
-    status3[0] = 0;
     warnings[0] = 0;
     mode = 0;
     qpiri = qpiri;
     qpiws = qpiws;
     qmod = qmod;
-    qpigs = qpigs;
     qpgs0 = qpgs0;
 }
 
-string *cInverter::GetQpigsStatus() {
+
+string *cInverter::GetQpgs0Status() {
     m.lock();
     string *result = new string(status1);
     m.unlock();
@@ -35,15 +33,6 @@ string *cInverter::GetQpigsStatus() {
 string *cInverter::GetQpiriStatus() {
     m.lock();
     string *result = new string(status2);
-    m.unlock();
-    return result;
-}
-
-// QPIGS status3 string added
-
-string *cInverter::GetQpgs0Status() {
-    m.lock();
-    string *result = new string(status3);
     m.unlock();
     return result;
 }
@@ -170,7 +159,7 @@ bool cInverter::query(const char *cmd, int replysize) {
 
 void cInverter::poll() {
     int n,j;
-    extern const int qpiri, qpiws, qmod, qpigs, qpgs0;
+    extern const int qpiri, qpiws, qmod, qpgs0;
 
     while (true) {
 
@@ -179,16 +168,6 @@ void cInverter::poll() {
             if (query("QMOD", qmod)) {
                 SetMode(buf[1]);
                 ups_qmod_changed = true;
-            }
-        }
-
-        // reading status (QPIGS)
-        if (!ups_qpigs_changed) {
-            if (query("QPIGS", qpigs)) {
-                m.lock();
-                strcpy(status1, (const char*)buf+1);
-                m.unlock();
-                ups_qpigs_changed = true;
             }
         }
 
