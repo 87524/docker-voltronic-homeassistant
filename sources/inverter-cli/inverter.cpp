@@ -185,7 +185,7 @@ void cInverter::poll() {
         if (!ups_qpgs0_changed) {
             if (query("QPGS0", qpgs0)) {
                 m.lock();
-                strcpy(status3, (const char*)buf+1);
+                strcpy(status1, (const char*)buf+1);
                 m.unlock();
                 ups_qpgs0_changed = true;
             }
