@@ -286,7 +286,7 @@ int main(int argc, char* argv[]) {
                 printf("  \"PV_total_in_watts\":%.1f,\n", pv_total_input_watts);
                 printf("  \"Load_pct\":%d,\n", load_percent);
                 printf("  \"Load_watt\":%d,\n", load_watt);
-                printf("  \"Load_watthour\":%.4f,\n", load_watthour);
+                //printf("  \"Load_watthour\":%.4f,\n", load_watthour);
                 printf("  \"Load_va\":%d,\n", load_va);
                // printf("  \"Bus_voltage\":%d,\n", voltage_bus);
               //  printf("  \"Heatsink_temperature\":%d,\n", temp_heatsink);
@@ -296,7 +296,7 @@ int main(int argc, char* argv[]) {
                 printf("  \"Battery_discharge_current\":%d,\n", batt_discharge_current);
                 //printf("  \"Load_status_on\":%c,\n", device_status[3]);
                // printf("  \"SCC_charge_on\":%c,\n", device_status[6]);
-                printf("  \"AC_charge_on\":%c,\n", device_status[7]);
+                // printf("  \"AC_charge_on\":%c,\n", device_status[7]);
                 printf("  \"Battery_recharge_voltage\":%.1f,\n", batt_recharge_voltage);
                 printf("  \"Battery_under_voltage\":%.1f,\n", batt_under_voltage);
                 printf("  \"Battery_bulk_voltage\":%.1f,\n", batt_bulk_voltage);
