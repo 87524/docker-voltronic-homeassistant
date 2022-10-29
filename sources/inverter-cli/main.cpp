@@ -250,8 +250,8 @@ int main(int argc, char* argv[]) {
                     printf("INVERTER: wattfactor from config is %.2f\n", wattfactor);
                 }
 
-                pv1_input_current = pv1_input_current * ampfactor;
-                pv2_input_current = pv2_input_current * ampfactor;
+                //pv1_input_current = pv1_input_current * ampfactor;
+                //pv2_input_current = pv2_input_current * ampfactor;
 
                 // It appears on further inspection of the documentation, that the input current is actually
                 // current that is going out to the battery at battery voltage (NOT at PV voltage).  This
@@ -276,13 +276,13 @@ int main(int argc, char* argv[]) {
                 printf("  \"AC_out_frequency\":%.1f,\n", freq_out);
                 printf("  \"PV1_in_voltage\":%.1f,\n", pv1_input_voltage);
                 printf("  \"PV1_in_current\":%.1f,\n", pv1_input_current);
-                printf("  \"PV1_in_watts\":%.1f,\n", pv1_input_watts);
-                printf("  \"PV1_in_watthour\":%.4f,\n", pv1_input_watthour);
-                printf("  \"SCC_voltage\":%.4f,\n", scc_voltage);
-                printf("  \"PV2_in_voltage\":%.1f,\n", pv2_input_voltage);
-                printf("  \"PV2_in_current\":%.1f,\n", pv2_input_current);
-                printf("  \"PV2_in_watts\":%.1f,\n", pv2_input_watts);
-                printf("  \"PV2_in_watthour\":%.4f,\n", pv2_input_watthour);
+               // printf("  \"PV1_in_watts\":%.1f,\n", pv1_input_watts);
+               // printf("  \"PV1_in_watthour\":%.4f,\n", pv1_input_watthour);
+               // printf("  \"SCC_voltage\":%.4f,\n", scc_voltage);
+               // printf("  \"PV2_in_voltage\":%.1f,\n", pv2_input_voltage);
+               // printf("  \"PV2_in_current\":%.1f,\n", pv2_input_current);
+                //printf("  \"PV2_in_watts\":%.1f,\n", pv2_input_watts);
+                //printf("  \"PV2_in_watthour\":%.4f,\n", pv2_input_watthour);
                 printf("  \"PV_total_in_watts\":%.1f,\n", pv_total_input_watts);
                 printf("  \"Load_pct\":%d,\n", load_percent);
                 printf("  \"Load_watt\":%d,\n", load_watt);
@@ -295,7 +295,7 @@ int main(int argc, char* argv[]) {
                 printf("  \"Battery_charge_current\":%d,\n", batt_charge_current);
                 printf("  \"Battery_discharge_current\":%d,\n", batt_discharge_current);
                 //printf("  \"Load_status_on\":%c,\n", device_status[3]);
-                printf("  \"SCC_charge_on\":%c,\n", device_status[6]);
+               // printf("  \"SCC_charge_on\":%c,\n", device_status[6]);
                 printf("  \"AC_charge_on\":%c,\n", device_status[7]);
                 printf("  \"Battery_recharge_voltage\":%.1f,\n", batt_recharge_voltage);
                 printf("  \"Battery_under_voltage\":%.1f,\n", batt_under_voltage);
